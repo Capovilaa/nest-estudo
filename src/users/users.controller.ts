@@ -11,21 +11,20 @@ import { Controller, Get, Param } from '@nestjs/common';
 
 @Controller('users')
 export class UsersController {
+  /**
+ * @description rotas para GET
+ 
+ * @Params é bem usado para pegar os dados que vêm por parâmetro,
+ * esses que precisam ser tipados 
+ */
+
   // retorna todos os users
   @Get()
   findAll() {
     return [];
   }
 
-  // exemplo de que 'interns' entraria na função abaixo que espera o id
-  @Get('interns')
-  findAllInterns() {
-    return [];
-  }
-
   // retorna user por id
-  // @Param pega os parâmetros que vieram por parâmetros, é necessário
-  // tipar o mesmo
   @Get(':id')
   findOne(@Param('id') id: string) {
     return { id };
