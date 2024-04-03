@@ -8,6 +8,7 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { UsersService } from './users.service';
 
 /**
  * @description controllers são as rotas que a aplicação vai chamar pelo front para acessar os métodos HTTP.
@@ -18,6 +19,9 @@ import {
 
 @Controller('users')
 export class UsersController {
+  // cria a instância da classe de services, isso é uma injeção
+  constructor(private readonly usersService: UsersService) {}
+
   /**
   * @description rotas para GET
    
@@ -30,13 +34,14 @@ export class UsersController {
   // retorna todos os users
   @Get()
   findAll(@Query('role') role?: 'INTERN' | 'ENGINEER' | 'ADMIN') {
-    return [];
+    return this.usersService.findAll(role);
   }
 
   // retorna user por id
+  // todo @Param é do tipo string, mas a função espera do tipo number. Podemos resolver isso convertendo para number usando '+id' que é chamado de Unary plus.
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return { id };
+    return this.usersService.findOne(+id);
   }
 
   /**
@@ -45,9 +50,17 @@ export class UsersController {
    */
 
   // cria novo usuário
+  // defini o tipo em que o user vem do body
   @Post()
-  create(@Body() user: {}) {
-    return user;
+  create(
+    @Body()
+    user: {
+      name: string;
+      email: string;
+      role: 'INTERN' | 'ENGINEER' | 'ADMIN';
+    },
+  ) {
+    return this.usersService.create(user);
   }
 
   /**
@@ -57,9 +70,18 @@ export class UsersController {
    */
 
   // atualiza um usuário que foi passado por parâmetro
+  // defini o tipo em que o userUpdate vem do body
   @Patch(':id')
-  update(@Param('id') id: string, @Body() userUpdate: {}) {
-    return { id, ...userUpdate };
+  update(
+    @Param('id') id: string,
+    @Body()
+    userUpdate: {
+      name?: string;
+      email?: string;
+      role?: 'INTERN' | 'ENGINEER' | 'ADMIN';
+    },
+  ) {
+    return this.usersService.update(+id, userUpdate);
   }
 
   /**
@@ -68,8 +90,9 @@ export class UsersController {
    */
 
   // deleta determinado id
+  // estamos usando o Unary plus novamente
   @Delete(':id')
   delete(@Param('id') id: string) {
-    return { id };
+    return this.usersService.delete(+id);
   }
 }
