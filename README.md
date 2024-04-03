@@ -22,17 +22,18 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Introdução
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Este repositório tem como objetivo servir de estudo e base para futuros desenvolvimentos em Nest.js, um framework altamente escalável e robusto.
+Para poder criar e desenvolver, foi tomado como base o vídeo [Nest.js Full Course](https://www.youtube.com/watch?v=8_X0nSrzrCw).
 
-## Installation
+## Instalação
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+## Rodando aplicação
 
 ```bash
 # development
@@ -58,16 +59,31 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+# Estudos
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+O código está bem comentado explicando o que cada etapa faz e retomando assuntos de Typescript, mas também será reforçado nessa sessão alguns conceitos e novos aprendizados adquiridos durante o estudo.
 
-## Stay in touch
+## Criar projeto e CLI
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Para trabalhar com Nest é uma boa instalar o CLI deles para que algumas atividades sejam facilitadas futuramente, esse CLI (command line interface) pode criar módulos, controllers, services e entre outras coisas rapidamente, assim como automatizar processos de implantação e testes.
 
-## License
+```bash
+# instalar a CLI globalmente:
+$ npm install -g @nestjs/cli
+```
 
-Nest is [MIT licensed](LICENSE).
+Isso já instalará no computado a CLI para ser usada.
+
+Para criar um projeto, devemos abrir o terminal e digitar o segundo comando, levando em conta a versão LTS do node:
+
+```bash
+# criar projeto Nest.js:
+$ nest new nome-do-projeto
+```
+
+Depois disso o projeot com as pastas dentro será criada, nos permitindo criar o back-end.
+
+## Estrutura básica do Nest.js
+
+Após criado, podemos ver que suas pastas são organizadas em uma estrutura semelhante a outros frameworks
+![Estrutura básica](/imagens/estrutura.png)

@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { NotFoundException } from '@nestjs/common';
 
 /**
  * @description esses services vão ser aplicados nos nossos controllers, aqui que estará contido a lógica
@@ -37,7 +38,13 @@ export class UsersService {
   // encontra todos usuários que possuem a determinada role
   findAll(role?: 'INTERN' | 'ENGINEER' | 'ADMIN') {
     if (role) {
-      return this.users.filter((user) => user.role === role);
+      const rolesArray = this.users.filter((user) => user.role === role);
+
+      // verifica se não passou uma role inexistente
+      if (rolesArray.length === 0)
+        throw new NotFoundException('User role not found');
+
+      return rolesArray;
     }
     return this.users;
   }
@@ -45,6 +52,10 @@ export class UsersService {
   // encontra o único usuário que possui aquele id
   findOne(id: number) {
     const user = this.users.find((user) => user.id === id);
+
+    // se o usuário não for encontrado, devolvemos uma mensagem de erro personalizada
+    if (!user) throw new NotFoundException('User not found');
+
     return user;
   }
 
