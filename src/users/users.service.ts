@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 /**
  * @description esses services vão ser aplicados nos nossos controllers, aqui que estará contido a lógica
@@ -47,18 +49,14 @@ export class UsersService {
   }
 
   // cria novo usuário
-  create(user: {
-    name: string;
-    email: string;
-    role: 'INTERN' | 'ENGINEER' | 'ADMIN';
-  }) {
+  create(createUserDto: CreateUserDto) {
     // copia users e organiza em ordem decrescente
     const usersByHighestId = [...this.users].sort((a, b) => b.id - a.id);
 
     // cria novo usuário com base no que foi passado e no novo id
     const newUser = {
       id: usersByHighestId[0].id + 1,
-      ...user,
+      ...createUserDto,
     };
 
     // adiciona novo usuário no json de usuários
@@ -67,19 +65,12 @@ export class UsersService {
   }
 
   // atualiza usuário de determinado id para o que foi passado
-  update(
-    id: number,
-    updatedUser: {
-      name?: string;
-      email?: string;
-      role?: 'INTERN' | 'ENGINEER' | 'ADMIN';
-    },
-  ) {
+  update(id: number, updateUserDto: UpdateUserDto) {
     // atualiza os dados do usuário
     this.users = this.users.map((user) => {
       // encontra usuário e retorna informações antigas e atualizadas
       if (user.id === id) {
-        return { ...user, ...updatedUser };
+        return { ...user, ...updateUserDto };
       }
 
       // se não encontrar

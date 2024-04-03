@@ -7,8 +7,11 @@ import {
   Patch,
   Post,
   Query,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 /**
  * @description controllers são as rotas que a aplicação vai chamar pelo front para acessar os métodos HTTP.
@@ -29,6 +32,8 @@ export class UsersController {
   
   * @Query permite passar 'variáveis' pela url, tendo um nome e um valor,sendo reconhecido por '?', essa query precisa ser definida e
   * tipada pelo typescript. Podemos passar ainda um sinal de '?' em sua definição para dizer que não é um campo obrigatório.
+  
+  * @dev ParseIntPipe deixar que os @Param apenas recebam números, este retorna um erro caso não seja um tipo permitido
   */
 
   // retorna todos os users
@@ -38,10 +43,9 @@ export class UsersController {
   }
 
   // retorna user por id
-  // todo @Param é do tipo string, mas a função espera do tipo number. Podemos resolver isso convertendo para number usando '+id' que é chamado de Unary plus.
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.usersService.findOne(id);
   }
 
   /**
@@ -54,13 +58,9 @@ export class UsersController {
   @Post()
   create(
     @Body()
-    user: {
-      name: string;
-      email: string;
-      role: 'INTERN' | 'ENGINEER' | 'ADMIN';
-    },
+    createUserDto: CreateUserDto,
   ) {
-    return this.usersService.create(user);
+    return this.usersService.create(createUserDto);
   }
 
   /**
@@ -70,18 +70,14 @@ export class UsersController {
    */
 
   // atualiza um usuário que foi passado por parâmetro
-  // defini o tipo em que o userUpdate vem do body
+  // defini o tipo em que o updateUserDto vem do body
   @Patch(':id')
   update(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body()
-    userUpdate: {
-      name?: string;
-      email?: string;
-      role?: 'INTERN' | 'ENGINEER' | 'ADMIN';
-    },
+    updateUserDto: UpdateUserDto,
   ) {
-    return this.usersService.update(+id, userUpdate);
+    return this.usersService.update(id, updateUserDto);
   }
 
   /**
@@ -90,9 +86,8 @@ export class UsersController {
    */
 
   // deleta determinado id
-  // estamos usando o Unary plus novamente
   @Delete(':id')
-  delete(@Param('id') id: string) {
-    return this.usersService.delete(+id);
+  delete(@Param('id', ParseIntPipe) id: number) {
+    return this.usersService.delete(id);
   }
 }
