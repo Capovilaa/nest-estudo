@@ -85,5 +85,5 @@ Depois disso o projeot com as pastas dentro será criada, nos permitindo criar o
 
 ## Estrutura básica do Nest.js
 
-Após criado, podemos ver que suas pastas são organizadas em uma estrutura semelhante a outros frameworks
+Após criado, podemos ver que suas pastas são organizadas em uma estrutura semelhante a outros frameworks:
 ![Estrutura básica](/imagens/estrutura.png)
