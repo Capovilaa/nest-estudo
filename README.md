@@ -87,3 +87,19 @@ Depois disso o projeot com as pastas dentro será criada, nos permitindo criar o
 
 Após criado, podemos ver que suas pastas são organizadas em uma estrutura semelhante a outros frameworks:
 ![Estrutura básica](/imagens/estrutura.png)
+
+Explicando por cima sobre os arquivos gerados, o controller é onde vão estar contidos as rotas que o front vai usar para interagir com o back, os services são tudo aquilo que não são rotas, lá podem estar presentes as suas regras de negócio, funções etc. No app.module é onde você vai organizar todas as suas rotas e serviços e finalmente o main é onde é chamado o module para rodar na porta desejada.
+
+## Características no Nest.js
+ Suas principais características incluem um sistema de injeção de dependência que facilita a modularidade e reutilização de componentes, além de aprimorar a testabilidade do código. O uso extensivo de decoradores simplifica a definição de rotas, middleware e a injeção de dependências. Ele promove fortemente a arquitetura baseada em módulos, facilitando a organização e escalabilidade do código, enquanto sua integração nativa com bibliotecas como TypeORM e GraphQL simplifica o desenvolvimento de APIs robustas e eficientes.
+ 
+## Prisma + Postgresql
+O prisma é o princial ORM para atuar junto com o Nest.js, sua documentação é bem completa e explica melhor sobre a integração dos dois. Na pasta do Prisma é possível fazer a conexão e criar os modelos das tabelas que vão compor o mesmo. Essa conexão é feita por uma string que está no .env do projeto:
+```bash
+# string para conectar com o seu banco de dados:
+postgres://YourUserName:YourPassword@localhost:5432/YourDatabase
+```
+Substitua pelas suas informações.
+
+## Explicação de cada função/rota
+No código, todas as funções e campos mais importantes estão comentados com uma descrição geral e uma observação sobre o que ele exerce na aplicação.
