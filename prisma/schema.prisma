@@ -12,7 +12,7 @@ generator client {
 // modelo da tabela
 model Employee {
   id        Int      @id @default(autoincrement())
-  name      String   @unique
+  name      String   
   email     String   @unique
   role      Role
   createdAt DateTime @default(now())
@@ -20,7 +20,7 @@ model Employee {
 }
 
 enum Role {
-  INTER
+  INTERN
   ENGINEER
   ADMIN
 }
