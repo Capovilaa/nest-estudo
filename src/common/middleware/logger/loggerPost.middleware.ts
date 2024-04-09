@@ -9,10 +9,10 @@ import { Injectable, NestMiddleware } from '@nestjs/common';
  */
 
 @Injectable()
-export class LoggerMiddleware implements NestMiddleware {
+export class LoggerPostMiddleware implements NestMiddleware {
   use(req: any, res: any, next: () => void) {
     console.log(
-      'Isso é um middleware chamado em todas as rotas employee, request ... ',
+      'Isso é um middleware chamado apenas pelo post na rota employee, request ... ',
       new Date().toDateString(),
     );
 
