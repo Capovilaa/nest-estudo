@@ -103,3 +103,19 @@ Substitua pelas suas informações.
 
 ## Explicação de cada função/rota
 No código, todas as funções e campos mais importantes estão comentados com uma descrição geral e uma observação sobre o que ele exerce na aplicação.
+
+# Geral Nest.js
+A seguir irei listar as principais funcionalidades e bibliotecas que podem atuar junto com o Nest.js, essas que serão fundamentais para o desenvolvimento. Também
+deixarei o link para a ducumentação oficial.
+
+## Controllers
+[Controllers](https://docs.nestjs.com/controllers) são onde estarão contidos suas rotas para que o fron-end interaja com ele, usaremos decorators para especificar qual que é o método HTTP que está sendo usado. Até então do que eu vi sobre, é possível determinar uma rota geral passano ela no @Controler(), podemos user Pipe para especificar o tipo que queremos receber por parâmetros, as funções são chamadas abaixo do decorator, fazemos a injeção pelo construtor.
+
+Imports úteis from '@nestjs/common':
+
+* __@Body__ - representa tudo que foi passado pela requisição, no caso o json;
+* __@Param__ - o que vem do parâmetro da URL, ele por padrão é do tipo string, para converter de acordo com os parâmetros dos serviços podemos usar Pipe. Esses vêm em rota ex: api/:id;
+* __@Query__ - parâmetros passados na URL que são usados para consulta, eles vêm depois do '?' ex: api?role='admin';
+* ValidationPipe - esses agem em conjunto com os DTOs, que são a estrutura de algo. Com isso podemos validar com o DTO se está ok o que recebe ou o que manda. Esses que são passados dentro do body, em seguida é feita uma instância do DTO necessário.
+
+## Providers

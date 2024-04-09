@@ -20,7 +20,7 @@ import { LoggerPostMiddleware } from './common/middleware/logger/loggerPost.midd
 @Module({
   imports: [UsersModule, DatabaseModule, EmployeeModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService],  
 })
 
 /**
