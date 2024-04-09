@@ -109,7 +109,7 @@ A seguir irei listar as principais funcionalidades e bibliotecas que podem atuar
 deixarei o link para a ducumentação oficial.
 
 ## Controllers
-[Controllers](https://docs.nestjs.com/controllers){:target="_blank"} são onde estarão contidos suas rotas para que o fron-end interaja com ele, usaremos decorators para especificar qual que é o método HTTP que está sendo usado. Até então do que eu vi sobre, é possível determinar uma rota geral passano ela no @Controler(), podemos user Pipe para especificar o tipo que queremos receber por parâmetros, as funções são chamadas abaixo do decorator, fazemos a injeção pelo construtor.
+[Controllers](https://docs.nestjs.com/controllers) são onde estarão contidos suas rotas para que o fron-end interaja com ele, usaremos decorators para especificar qual que é o método HTTP que está sendo usado. Até então do que eu vi sobre, é possível determinar uma rota geral passano ela no @Controler(), podemos user Pipe para especificar o tipo que queremos receber por parâmetros, as funções são chamadas abaixo do decorator, fazemos a injeção pelo construtor.
 
 Imports úteis from '@nestjs/common':
 
